@@ -1,6 +1,6 @@
 {
-    "name": "sport_app",
-    "short_name": "sport_app",
+    "name": "sports_app",
+    "short_name": "sports_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sport_app/Screens/second_screen.dart';
+import 'OnboardingScreen.dart';
 
-class FirstScreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _FirstScreenState createState() => _FirstScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => SecondScreen()),
+        MaterialPageRoute(builder: (context) => OnboardingScreen()),
       );
     });
   }
@@ -22,8 +22,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      Stack(
+      body: Stack(
         fit: StackFit.expand,
         children: [
           // الصورة الخلفية
@@ -36,7 +35,7 @@ class _FirstScreenState extends State<FirstScreen> {
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width * 0.66,
-              child: Image.network('https://i.postimg.cc/9QGmVZqm/logo.png'),
+              child: Image.asset("assets/images/logo.png"),
             ),
           ),
           Align(
@@ -48,12 +47,16 @@ class _FirstScreenState extends State<FirstScreen> {
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
                 ),
                 SizedBox(height: 10),
-                Text("Developed By Semicolon Team",
-                  style: GoogleFonts.lato(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Developed By Semicolon Team",
+                    style: GoogleFonts.lato(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
