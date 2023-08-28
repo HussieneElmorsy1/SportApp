@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Screens/SplashScreen.dart';
+import 'package:sportsapp/screens/SplashScreen.dart';
 
 import 'Screens/HomeScreen.dart';
 
 void main() {
-  runApp(const sports_app());
+  runApp(const MyApp());
 }
 
-class sports_app extends StatelessWidget {
-  const sports_app({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override

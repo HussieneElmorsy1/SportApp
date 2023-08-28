@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/screens/OnboardingScreen.dart';
+
+import 'OnboardingScreen.dart';
 
 class FirstScreen extends StatefulWidget {
   @override

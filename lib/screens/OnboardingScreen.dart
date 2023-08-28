@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:news_app/Screens/HomeScreen.dart';
+import 'HomeScreen.dart';
 import 'test.dart';
 // import 'package:sports_app/screens/test.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -80,11 +80,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 margin: EdgeInsets.only(bottom: 20),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(
                       MaterialPageRoute<void>(
-                          builder: (BuildContext context) => HomeScreen()),
+                        builder: (BuildContext context) => const HomeScreen(),
+                      ),
                     );
+
+                    // Navigator.pop(context);
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute<void>(
+                    //       builder: (BuildContext context) => HomeScreen()),
+                    // );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute<void>(
+                    //     builder: (BuildContext context) => const HomeScreen(),
+                    //   );
+                    // );
+                    // Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => HomeScreen()),
+                    //     ModalRoute.withName("HomeScreen()"));
                   },
                   child: Text('Skip'),
                 ),
