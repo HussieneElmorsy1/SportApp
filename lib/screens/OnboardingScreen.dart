@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sportsapp/Cubit/cubit/slider_cubit.dart';
 import 'HomeScreen.dart';
 import 'test.dart';
 // import 'package:sports_app/screens/test.dart';
@@ -27,50 +29,55 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        CarouselSlider(
-            items: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                color: Colors.red,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                color: Colors.yellow,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                color: Colors.green,
-              ),
-            ],
-            // items: imageUrls
-            //     .map((e) => Image.network(
-            //           e,
-            //           width: double.infinity,
-            //           fit: BoxFit.fill,
-            //         ))
-            //     .toList(),
-            carouselController: _controller1,
-            options: CarouselOptions(
-              height: MediaQuery.of(context).size.height,
-              aspectRatio: 16 / 9,
-              viewportFraction: 1,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              reverse: false,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enlargeCenterPage: true,
-              enlargeFactor: 0.3,
-              onPageChanged: (index, reason) => {
-                active_page = index,
-                setState(
-                  () {},
-                ),
-              },
-              scrollDirection: Axis.horizontal,
-            )),
+        BlocBuilder<SliderCubit, SliderState>(
+          builder: (context, state) {
+            return CarouselSlider(
+                items: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.green,
+                  ),
+                ],
+                // items: imageUrls
+                //     .map((e) => Image.network(
+                //           e,
+                //           width: double.infinity,
+                //           fit: BoxFit.fill,
+                //         ))
+                //     .toList(),
+                carouselController: _controller1,
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 1,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enlargeCenterPage: true,
+                  enlargeFactor: 0.3,
+                  onPageChanged: (index, reason) => {
+                    active_page = index,
+                    // setState(
+                    //   () {},
+                    // ),
+                    context.read<SliderCubit>().Slider(),
+                  },
+                  scrollDirection: Axis.horizontal,
+                ));
+          },
+        ),
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -86,37 +93,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         builder: (BuildContext context) => const HomeScreen(),
                       ),
                     );
-
-                    // Navigator.pop(context);
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute<void>(
-                    //       builder: (BuildContext context) => HomeScreen()),
-                    // );
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute<void>(
-                    //     builder: (BuildContext context) => const HomeScreen(),
-                    //   );
-                    // );
-                    // Navigator.pushAndRemoveUntil(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => HomeScreen()),
-                    //     ModalRoute.withName("HomeScreen()"));
                   },
                   child: Text('Skip'),
                 ),
               ),
-              AnimatedSmoothIndicator(
-                activeIndex: active_page,
-                count: 3,
-                onDotClicked: (index) => {
-                  active_page = index,
-                  setState(
-                    () {
-                      _controller1.animateToPage(active_page);
+              BlocBuilder<SliderCubit, SliderState>(
+                builder: (context, state) {
+                  return AnimatedSmoothIndicator(
+                    activeIndex: active_page,
+                    count: 3,
+                    onDotClicked: (index) => {
+                      active_page = index,
+                      _controller1.animateToPage(active_page),
+                      context.read<SliderCubit>().button(),
                     },
-                  ),
+                  );
                 },
               ),
               SizedBox(
