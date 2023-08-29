@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sportsapp/Cubit/cubit/slider_cubit.dart';
+import 'package:sports_app/Cubits/SliderCubit/slider_cubit.dart';
 import 'HomeScreen.dart';
 import 'test.dart';
 // import 'package:sports_app/screens/test.dart';
