@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sportsapp/Cubit/FootballCountries/football_countries_cubit.dart';
 import 'package:sportsapp/Cubit/cubit/slider_cubit.dart';
+import 'package:sportsapp/Screens/CountriesScreen.dart';
 import 'package:sportsapp/screens/SplashScreen.dart';
 
 import 'Screens/HomeScreen.dart';
@@ -20,6 +22,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<SliderCubit>(
           create: (BuildContext context) => SliderCubit(),
         ),
+        // cubit from Countries 
+        BlocProvider<FootballCountriesCubit>(
+          create: (BuildContext context) => FootballCountriesCubit(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -28,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SplashScreen(),
+        home: FootballCountriesPage(),
       ),
     );
   }
